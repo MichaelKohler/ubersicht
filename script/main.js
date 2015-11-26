@@ -173,7 +173,8 @@ $(function () {
   // This is rate-limited to 5 requests per minute, which should be enough.
   function getIssues(page){
     var page = page || 1;
-    var query = 'per_page=100&page=' + page + '&sort=updated&q=repo:' + encodeURIComponent(githubOrganisation) + '/' + defaultRepository;
+    var repo = githubOrganisation + '/' + defaultRepository;
+    var query = 'per_page=100&page=' + page + '&sort=updated&q=repo:' + encodeURIComponent(repo);
 
     // Cache for quick development
     //return $.getJSON('./script/cache.json');
