@@ -24,7 +24,8 @@ $(function () {
   // Some config options for forked instances
 
   // Which organisation's issues you'd like to display
-  var defaultGithubOrganisation = 'hoodiehq';
+  var defaultGithubOrganisation = 'mozilla';
+  var defaultRepository = 'participation-org';
 
   // labelForNewCommitters is the label you use for simple issues that are suitable
   // for new committers.
@@ -42,6 +43,8 @@ $(function () {
     // repos and issues and is a better example
     if(githubOrganisation === 'espy'){
       githubOrganisation = 'hoodiehq';
+    } else if (githubOrganisation === 'michaelkohler') {
+      githubOrganisation = defaultGithubOrganisation;
     }
   }
   // If none of the above apply, set to default github organisation
@@ -170,7 +173,7 @@ $(function () {
   // This is rate-limited to 5 requests per minute, which should be enough.
   function getIssues(page){
     var page = page || 1;
-    var query = 'per_page=100&page=' + page + '&sort=updated&q=user:' + encodeURIComponent(githubOrganisation);
+    var query = 'per_page=100&page=' + page + '&sort=updated&q=user:' + encodeURIComponent(githubOrganisation) + '&repo=' + defaultRepository;
 
     // Cache for quick development
     //return $.getJSON('./script/cache.json');
